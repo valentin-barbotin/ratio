@@ -1,21 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Inventory;
 
 public class FirePistol : MonoBehaviour
 {
     public GameObject projectile; // on stockera le prefab Balle
     public Transform posTir; // Position de la Balle
     public float force; // puissance de tir
-    public int chargeur = 10;
     public AudioClip sonDeTir; // Son de tir
+
+    public GameObject FPSController;
+
+    private int getBullet()
+    {
+        print("getBullet");
+        print(FPSController.GetComponent<Player>().health);
+        int nb = FPSController.GetComponent<Player>().inventory.get(IItems.BALLE);
+        print("nb balle : " + nb);
+        return nb;
+    }
+
+    private void removeABullet()
+    {
+        FPSController.GetComponent<Player>().inventory.remove(IItems.BALLE);
+        return;
+    }
     
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && chargeur != 0)// qd on clique 
+        if (Input.GetMouseButtonDown(0) && this.getBullet() != 0)// qd on clique 
         {
+            this.removeABullet();
             // Instanciation (création) du projectile
             GameObject go = Instantiate(projectile, posTir.position, Quaternion.identity);
             // Instantiate prend comme paramètre l'objet à instancier, la position et la rotation (ici elle est nulle)
@@ -28,14 +46,15 @@ public class FirePistol : MonoBehaviour
             Destroy(go, 10);
 
             // On lance le son de tir
-            // GetComponent<AudioSource>().PlayOneShot(sonDeTir);
+            GetComponent<AudioSource>().PlayOneShot(sonDeTir);
 
-            chargeur--;
+            // chargeur--;
         }
 
         if (Input.GetKey("r"))
         {
-            chargeur = 10;
+            print("reload");
+            // chargeur = 10;
         }
         
     }
