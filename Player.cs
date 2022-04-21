@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.UI; // Pour utiliser les fonctionnalit�s du syst�me UI
 using UnityEngine;
 using static getObj;
 using static Inventory;
@@ -11,15 +13,18 @@ public class Player : MonoBehaviour
     public GameObject itemInHand = null;
     public Inventory inventory;
 
+    public Text bulletsTxt;
+
     void Start()
     {
-        itemInHand = null;
-        inventory = new Inventory();
+        this.itemInHand = null;
+        this.inventory = new Inventory();
     }
 
     // Update is called once per frame
     void Update()
     {
+        bulletsTxt.text = "Bullets : " + this.inventory.get(IItems.BALLE);
         RaycastHit hit;
         int distance = 50;
 

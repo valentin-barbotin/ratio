@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int bullets = 5;
-    IDictionary<IItems, int> items;
+    IDictionary<IItems, int> items = Enum.GetValues(typeof(IItems))
+               .Cast<IItems>()
+               .ToDictionary(t => t, t => 10 );
 
     public enum IItems
     {
@@ -18,44 +20,29 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        // string[] _items = new string[] { "banane", "ratio", "fusil", "potion", "eau" };
-        items = new Dictionary<IItems, int>();
-        foreach (int item in Enum.GetValues(typeof(IItems)))
-        {
-            // items.Add(item, 0);
-            print(item);
-        }
+        this.list();
     }
 
     void list() {
-        foreach (var item in items)
-        {
+        items.All(item => {
             print(item.Key + " : " + item.Value);
-        }
+            return true;
+        });
     }
 
-    public void add(IItems item) {
-        if (items.ContainsKey(item)) {
-            items[item] += 1;
-        }
+    public void add(IItems item, int quantity = 1) {
+        items[item] += quantity;
     }
 
     public void remove(IItems item) {
-        if (items.ContainsKey(item)) {
-            items[item] -= 1;
-        }
+        items[item] -= 1;
     }
 
     public int get(IItems item) {
-        if (items.ContainsKey(item)) {
-            return items[item];
-        }
-        return 0;
+        return items[item];
     }
 
     public void use(IItems item) {
-        if (items.ContainsKey(item)) {
-            items[item] -= 1;
-        }
+        items[item] -= 1;
     }
 }
