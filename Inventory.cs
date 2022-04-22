@@ -13,9 +13,9 @@ public class Inventory : MonoBehaviour
 
     public enum IItems
     {
-        BANANE,    
-        EAU,    
-        BALLE,    
+        BANANE,
+        EAU,
+        BALLE,
     }
 
     void Start()

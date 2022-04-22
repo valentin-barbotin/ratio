@@ -11,7 +11,7 @@ public class getObj : MonoBehaviour
         if (collider.gameObject.name == "FPSController") // Si le joueur touche un pi�ge 
         {
             print("You have been hit by a trap");
-            print("You have " + collider.gameObject.GetComponent<Player>().health + " health left");
+            print("You have " + collider.gameObject.GetComponent<Player2>().health + " health left");
         }
     }
 

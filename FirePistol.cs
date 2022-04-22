@@ -15,15 +15,15 @@ public class FirePistol : MonoBehaviour
     private int getBullet()
     {
         print("getBullet");
-        print(FPSController.GetComponent<Player>().health);
-        int nb = FPSController.GetComponent<Player>().inventory.get(IItems.BALLE);
+        print(FPSController.GetComponent<Player2>().health);
+        int nb = FPSController.GetComponent<Player2>().inventory.get(IItems.BALLE);
         print("nb balle : " + nb);
         return nb;
     }
 
     private void removeABullet()
     {
-        FPSController.GetComponent<Player>().inventory.remove(IItems.BALLE);
+        FPSController.GetComponent<Player2>().inventory.remove(IItems.BALLE);
         return;
     }
     
