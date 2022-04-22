@@ -21,7 +21,7 @@ public class Player2 : MonoBehaviour
         this.inventory = new Inventory();
     }
 
-    // Update is called once per frame
+    // Update is called once per framecollider.
     void Update()
     {
         bulletsTxt.text = "Bullets : " + this.inventory.get(IItems.BALLE);

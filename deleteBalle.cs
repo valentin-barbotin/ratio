@@ -7,6 +7,6 @@ public class deleteBalle : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         print("ratio");
-        Destroy(collider.gameObject);
+        Destroy(gameObject);
     }
 }
