@@ -22,6 +22,7 @@ public class Player2 : MonoBehaviour
 
     public Text bulletsTxt;
     public Text flagsTxt;
+    public Text crosshairTxt;
 
     public string faction = "US";
 
@@ -51,6 +52,23 @@ public class Player2 : MonoBehaviour
                 this.flagsTxt.text = "RU WIN";
             }
         // }
+    }
+
+
+    void UpdateTarget(GameObject target) {
+
+        print("UpdateTarget");
+        print(target.tag);
+        switch (target.tag)
+        {
+            case "ratio":
+                this.crosshairTxt.text = "Prendre";
+                break;
+
+            default:
+                this.crosshairTxt.text = "X";
+                break;
+        }
     }
 
     void HandleFlags() {
@@ -102,13 +120,17 @@ public class Player2 : MonoBehaviour
     // Update is called once per framecollider.
     void Update()
     {
-        this.UpdateHud();
         RaycastHit hit;
         int distance = 50;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        GameObject obj = getObj.obj(ray, distance);
+        this.UpdateHud();
+        if (obj != null)
+        {
+            this.UpdateTarget(obj);
+        }
 
         if (Input.GetKeyUp(KeyCode.E)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject obj = getObj.obj(ray, distance);
 
             if (Physics.Raycast(ray, out hit, distance)) {
                 print(obj.tag);
@@ -129,9 +151,6 @@ public class Player2 : MonoBehaviour
                 itemInHand = null;
                 return;
             }
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject obj = getObj.obj(ray, distance);
 
             if (obj != null) {
                 if (obj.tag == "ratio") {
