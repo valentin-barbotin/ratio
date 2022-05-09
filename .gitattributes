@@ -1,2 +1,6 @@
 * eol=lf
 *.asset eol=lf -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.png[[:space:]]*.tif[[:space:]]*.fbx[[:space:]]*.tga[[:space:]]*.bmp filter=lfs diff=lfs merge=lfs -text
