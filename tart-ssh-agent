@@ -1,0 +1,107 @@
+[33mcommit c7a245a0f4c79f7603f76f34e42ee943c69101dd[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Mon May 9 02:06:41 2022 +0200
+
+    ..
+
+[33mcommit cd4084647516273c0c80e0815d75273d5ff1f58f[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Mon May 9 01:26:17 2022 +0200
+
+    feat: skybox
+
+[33mcommit dfd6c9403f1b7269511aacb31689b188f0d05e0a[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sun May 8 20:53:32 2022 +0200
+
+    feat: kill ennemy
+
+[33mcommit 802b648ee79ed5612c0c1c3b590431cb14904b78[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sat May 7 22:52:02 2022 +0200
+
+    ratio
+
+[33mcommit b736ce8b709327cb12e5c6396dd49668303dd584[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sat May 7 14:05:52 2022 +0200
+
+    feat: crosshair using target
+
+[33mcommit d29d54549c84a308fcb90d6dcbf45c1655c39419[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sun May 1 00:30:41 2022 +0200
+
+    feat: AK full auto + impacts
+
+[33mcommit 3b9936926f91d1ba564d2cfaf06af3f35e66ed63[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sat Apr 30 20:03:21 2022 +0200
+
+    test2
+
+[33mcommit edb9164ff7f0b2b275e446551266fa66b124125f[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Sat Apr 30 20:01:39 2022 +0200
+
+    test
+
+[33mcommit a4e4ca9af8a4cdbc7f669f876143fe4cf9d8f41d[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Fri Apr 22 18:41:32 2022 +0200
+
+    ratio2
+
+[33mcommit 1bc0d6e6dd2e024020ee40bb0e5c22bca36d304b[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Fri Apr 22 11:52:45 2022 +0200
+
+    double ratio
+
+[33mcommit 40cb3bf0d132f18842bfbba1873d9f63ebf7943b[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Fri Apr 22 11:50:52 2022 +0200
+
+    ratio
+
+[33mcommit e6cf74d9be1e638370e57c012b92805cee64ae9f[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 23:50:09 2022 +0200
+
+    feat: checkZone
+
+[33mcommit 7b1cd66292180ce705541829af12d1f61cd01fc0[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 23:06:43 2022 +0200
+
+    feat: bullets from inventory
+
+[33mcommit 9487400310806b33e4f41c4bce1dbec3ec642b9d[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 22:16:08 2022 +0200
+
+    feat: bullets hud
+
+[33mcommit a941f83c1b82f153c0e832d7c8a7788d1487bce0[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 20:28:50 2022 +0200
+
+    draft: inventory
+
+[33mcommit 478d6c355a80b5f533fe04ada120383c2c84bb34[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 20:28:39 2022 +0200
+
+    feat: move/pickup objects
+
+[33mcommit e47c33fa31c0dbd4aafc36a67f2fab9a23636fb8[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Thu Apr 21 20:01:53 2022 +0200
+
+    chore: assets
+
+[33mcommit 367f421984f71df330adc5403a9cf5c293808612[m
+Author: Valentin Barbotin <valentin.barbotin@sixense-group.com>
+Date:   Tue Apr 19 21:51:41 2022 +0200
+
+    initial commit

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Inventory;
+using static getObj;
 
 public class FirePistol : MonoBehaviour
 {
@@ -17,10 +18,18 @@ public class FirePistol : MonoBehaviour
 
     private bool isShooting = false;
 
+    private GameObject[] spawnPoints;
+
+    public GameObject ennemy;
+
+    void Start() {
+        this.muzzleFlash.SetActive(false);
+        this.spawnPoints = GameObject.FindGameObjectsWithTag("ennemySpawnPoint");
+    }
+
     private int getBullet()
     {
         int nb = FPSController.GetComponent<Player2>().inventory.get(IItems.BALLE);
-        print("nb balle : " + nb);
         return nb;
     }
 
@@ -57,14 +66,33 @@ public class FirePistol : MonoBehaviour
         GameObject obj = getObj.obj(ray, distance);
 
         if (Physics.Raycast(ray, out hit, distance)) {
-            print(obj.tag);
-            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.identity);
-            // Destroy(impact, 2f); // on détruit l'effet après 2s
-        }
-    }
+            if (hit.collider.gameObject.tag == "Zombie")
+            {
+                if (hit.collider.gameObject.GetComponent<Zombie>().health <= 0) {
+                    return;
+                }
+                hit.collider.gameObject.GetComponent<Zombie>().health -= 30;
+                if (hit.collider.gameObject.GetComponent<Zombie>().health <= 0)
+                {
+                    FPSController.GetComponent<Player2>().currentEnnemy--;
+                    if (FPSController.GetComponent<Player2>().currentEnnemy == 0) {
+                        FPSController.GetComponent<Player2>().vague++;
+                        
+                        int nb = FPSController.GetComponent<Player2>().ennemyAmount * FPSController.GetComponent<Player2>().vague;
+                        for (int i = 0; i < nb; i++)
+                        {
+                            GameObject spawnPoint = FPSController.GetComponent<Player2>().spawnPoints[UnityEngine.Random.Range(0, FPSController.GetComponent<Player2>().spawnPoints.Length)];
+                            GameObject z = Instantiate(ennemy, spawnPoint.transform.position, Quaternion.identity);
+                        }
+                        FPSController.GetComponent<Player2>().currentEnnemy = nb;
 
-    void Start() {
-        this.muzzleFlash.SetActive(false);
+                    }
+                }
+                return;
+            }
+            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.identity);
+            Destroy(impact, 2f); // on détruit l'effet après 2s
+        }
     }
     
 
@@ -105,7 +133,6 @@ public class FirePistol : MonoBehaviour
 
         if (Input.GetKeyUp("r"))
         {
-            print("reload");
             // chargeur = 10;
         }
         

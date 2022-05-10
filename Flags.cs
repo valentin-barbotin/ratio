@@ -8,20 +8,14 @@ using static Inventory;
 
 public class Flags : MonoBehaviour
 {
-    public int pointsUS = 0;
-    public int pointsRU = 0;
-    public string name = "";
+    public int points = 0;
 
     void Start()
     {
+        this.points = 0;
     }
 
     void Update()
-    { 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var item in players)
-        {
-            print(item);
-        }
+    {
     }
 }

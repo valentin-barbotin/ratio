@@ -7,16 +7,10 @@ using UnityEngine;
 using static getObj;
 using static Inventory;
 
-enum Faction
-{
-    US,
-    RU
-}
-
 public class Player2 : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int health = 100;
+    public int health;
     public GameObject itemInHand = null;
     public Inventory inventory;
 
@@ -24,41 +18,49 @@ public class Player2 : MonoBehaviour
     public Text flagsTxt;
     public Text crosshairTxt;
 
-    public string faction = "US";
+    public GameObject ennemy;
+
+    public int ennemyAmount;
+    public int currentEnnemy;
+
+    public GameObject[] spawnPoints;
+
+    private int points;
+    public int vague;
+
+    public bool alive;
 
     void Start()
     {
+        this.health = 100;
+        this.alive = true;
+        this.points = 0;
+        this.vague = 1;
+        this.ennemyAmount = 5;
         this.itemInHand = null;
         this.inventory = new Inventory();
         StartCoroutine("handleCapture");
+        this.spawnPoints = GameObject.FindGameObjectsWithTag("ennemySpawnPoint");
+
+        for (int i = 0; i < this.ennemyAmount; i++)
+        {
+            GameObject spawnPoint = this.spawnPoints[UnityEngine.Random.Range(0, this.spawnPoints.Length)];
+            GameObject z = Instantiate(ennemy, spawnPoint.transform.position, Quaternion.identity);
+        }
+        this.currentEnnemy = this.ennemyAmount;
     }
 
     void UpdateHud() {
-        this.bulletsTxt.text = "Bullets : " + this.inventory.get(IItems.BALLE);
+        this.bulletsTxt.text = String.Format("Life : {0} - Bullets : {1}", Math.Max(0, this.health), this.inventory.get(IItems.BALLE));
 
-        GameObject flag = GameObject.FindGameObjectWithTag("flag");
-        this.flagsTxt.text = "";
-        // foreach (var item in flags)
-        // {
-            Flags comp = flag.GetComponent<Flags>();
-            
-            this.flagsTxt.text += String.Format("{0} {2} | {3} {1}", "US", "RU", comp.pointsUS, comp.pointsRU);
-            if (comp.pointsUS >= 100)
-            {
-                this.flagsTxt.text = "US WIN";
-            }
-            else if (comp.pointsUS >= 100)
-            {
-                this.flagsTxt.text = "RU WIN";
-            }
-        // }
+        int vague = 2;
+        int points = 3;
+        this.flagsTxt.text = String.Format("Vague : {0} Points {1} - Zombie(s) : {2}", this.vague, this.points, this.currentEnnemy);
     }
 
 
     void UpdateTarget(GameObject target) {
 
-        print("UpdateTarget");
-        print(target.tag);
         switch (target.tag)
         {
             case "ratio":
@@ -78,48 +80,23 @@ public class Player2 : MonoBehaviour
             if (Vector3.Distance(item.transform.position, gameObject.transform.position) > 15) {
                 return;
             }
-            Flags comp = item.GetComponent<Flags>();
-            // comp.pointsUS += 1;
-            switch (this.faction)
-            {
-                case "US":
-                    comp.pointsUS = Math.Min(comp.pointsUS += 1, 100);
-                    break;
-
-                case "RU":
-                    comp.pointsRU = Math.Min(comp.pointsRU += 1, 100);
-                    break;
-
-                default:
-                    break;
-            }
-            // switch (switch_on_faction(this.faction))
-            // {
-            //     case Faction.US:
-            //         if (comp.pointsUS > comp.pointsRU)
-            //         {
-            //             comp.pointsUS -= 1;
-            //             this.HandleVictory();
-            //         }
-            //         break;
-            //     case Faction.RU:
-            //         if (comp.pointsRU > comp.pointsUS)
-            //         {
-            //             comp.pointsRU -= 1;
-            //             this.HandleVictory();
-            //         }
-            //         break;
-            // }
-            // {
-                
-            //     default:
-            // }
+            this.points = Math.Min(this.points += 1, 100);
         }
     }
 
     // Update is called once per framecollider.
     void Update()
     {
+        if (this.health <= 0)
+        {
+            if (this.alive)
+            {
+                this.alive = false;
+                print("You are dead");
+                return;
+            }
+            return;
+        }
         RaycastHit hit;
         int distance = 50;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -133,11 +110,10 @@ public class Player2 : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E)) {
 
             if (Physics.Raycast(ray, out hit, distance)) {
-                print(obj.tag);
                 if (obj.tag == "ratio") {
                     Destroy(obj);
                     print("ajout inventaire");
-                    this.inventory.add(IItems.BALLE, 15);
+                    this.inventory.add(IItems.BALLE, 200);
                 }
             }
             return;
