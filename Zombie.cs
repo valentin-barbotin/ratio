@@ -9,6 +9,7 @@ public class Zombie : MonoBehaviour
 {
     public int health;
     Animator anim;
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()

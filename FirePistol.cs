@@ -41,12 +41,26 @@ public class FirePistol : MonoBehaviour
 
     IEnumerator fireLoop()
     {
+        float speed = 0.1f;
+
+        switch (FPSController.GetComponent<Player2>().currentWeapon)
+        {
+            case "ak":
+                speed = 0.1f;
+                break;
+            case "famas":
+                speed = 0.08f;
+                break;
+            default:
+                break;
+        }
+
         while (this.isShooting)
         {
             this.shoot();
             if (this.getBullet() > 0)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(speed);
             }
             else
             {
@@ -74,7 +88,9 @@ public class FirePistol : MonoBehaviour
                 hit.collider.gameObject.GetComponent<Zombie>().health -= 30;
                 if (hit.collider.gameObject.GetComponent<Zombie>().health <= 0)
                 {
+                    FPSController.GetComponent<Player2>().totalKills++;
                     FPSController.GetComponent<Player2>().currentEnnemy--;
+                    hit.collider.gameObject.GetComponent<AudioSource>().PlayOneShot(hit.collider.gameObject.GetComponent<Zombie>().deathSound);
                     if (FPSController.GetComponent<Player2>().currentEnnemy == 0) {
                         FPSController.GetComponent<Player2>().vague++;
                         
