@@ -76,7 +76,8 @@ public class FirePistol : MonoBehaviour
         RaycastHit hit;
         int distance = 50;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         GameObject obj = getObj.obj(ray, distance);
 
         if (Physics.Raycast(ray, out hit, distance)) {

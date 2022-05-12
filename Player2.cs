@@ -178,7 +178,9 @@ public class Player2 : MonoBehaviour
         }
         RaycastHit hit;
         int distance = 50;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
         GameObject obj = getObj.obj(ray, distance);
         this.UpdateHud();
         if (obj != null)
